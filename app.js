@@ -22,6 +22,7 @@ configureGoogleJwt(app, passport);
 app.get('/', function (req, res) {
   res.json({
     message: 'Exercise 27 - Facebook and Google OAuth to JWT REST API',
+    status: 'deploy thành công',
     login: '/users/login',
     facebookLogin: '/auth/facebook',
     googleLogin: '/auth/google',
