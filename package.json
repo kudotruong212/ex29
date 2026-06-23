@@ -1,0 +1,27 @@
+{
+  "name": "exercise27-oauth-jwt",
+  "version": "1.0.0",
+  "description": "Exercise 27 - Facebook and Google OAuth to JWT REST API",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "seed": "node seed.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.7",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^9.6.2",
+    "morgan": "^1.10.1",
+    "passport": "^0.7.0",
+    "passport-facebook": "^3.0.0",
+    "passport-google-oauth20": "^2.0.0",
+    "passport-jwt": "^4.0.1",
+    "selfsigned": "^2.4.1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
