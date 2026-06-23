@@ -3,11 +3,13 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const logger = require('morgan');
+const path = require('path');
 const { passport } = require('./config/jwtConfig');
 const configureFacebookJwt = require('./config/facebookConfig');
 const configureGoogleJwt = require('./config/googleConfig');
 const articleRouter = require('./routes/articleRouter');
 const userRouter = require('./routes/userRouter');
+const uploadRouter = require('./routes/uploadRouter');
 
 const app = express();
 const mongoUrl = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/newspapers';
@@ -19,6 +21,8 @@ app.use(passport.initialize());
 configureFacebookJwt(app, passport);
 configureGoogleJwt(app, passport);
 
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 app.get('/', function (req, res) {
   res.json({
     message: 'Exercise 27 - Facebook and Google OAuth to JWT REST API',
@@ -26,12 +30,15 @@ app.get('/', function (req, res) {
     login: '/users/login',
     facebookLogin: '/auth/facebook',
     googleLogin: '/auth/google',
-    articles: '/articles'
+    articles: '/articles',
+    uploadSingle: '/upload/single',
+    uploadMultiple: '/upload/multiple'
   });
 });
 
 app.use('/users', userRouter);
 app.use('/articles', articleRouter);
+app.use('/upload', uploadRouter);
 
 app.use(function (req, res) {
   res.status(404).json({ message: 'Route not found' });
